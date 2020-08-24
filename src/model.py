@@ -10,9 +10,16 @@ class SarcasmDetector:
         self.model.add(Embedding(config.VOCAB_SIZE,
                                  config.EMBEDDING_DIM, input_length=config.MAX_LEN))
         self.model.add(GlobalAveragePooling1D())
+        self.model.add(Dense(512, activation="relu"))
+        self.model.add(Dropout(0.25))
+        self.model.add(Dense(256, activation="relu"))
+        self.model.add(Dropout(0.25))
+        self.model.add(Dense(128, activation="relu"))
+        self.model.add(Dropout(0.25))
+        self.model.add(Dense(64, activation="relu"))
+        self.model.add(Dropout(0.25))
         self.model.add(Dense(32, activation="relu"))
-        self.model.add(Dense(32, activation="relu"))
-        self.model.add(Dropout(0.5))
+        self.model.add(Dropout(0.4))
         self.model.add(Dense(1, activation="sigmoid"))
         self.model.compile(
             loss=config.LOSS, optimizer=config.OPTIMIZER, metrics=['accuracy'])

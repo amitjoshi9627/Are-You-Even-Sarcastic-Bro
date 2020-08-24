@@ -29,8 +29,6 @@ def train(model):
     X_test = np.array(X_test)
     y_train = np.array(y_train)
     y_test = np.array(y_test)
-    print(y_train[:5])
-
     history = model.train(X_train, y_train, X_test, y_test)
     return history
 
